@@ -1,0 +1,1585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bloom Eyewear — Master Checklist · April 2026</title>
+<style>
+  :root {
+    --pink: #D4537E; --pink-light: #FBEAF0; --pink-dark: #72243E;
+    --teal: #1D9E75; --teal-light: #E1F5EE; --teal-dark: #085041;
+    --amber: #BA7517; --amber-light: #FAEEDA; --amber-dark: #633806;
+    --red: #E24B4A; --red-light: #FCEBEB; --red-dark: #791F1F;
+    --blue: #185FA5; --blue-light: #E6F1FB; --blue-dark: #042C53;
+    --green: #3B6D11; --green-light: #EAF3DE; --green-dark: #27500A;
+    --gray-50: #F8F8F6; --gray-100: #F0EEE8; --gray-200: #D3D1C7;
+    --text: #1a1a18; --text-2: #5F5E5A; --text-3: #888780;
+    --border: #E0DED6; --white: #fff;
+    --r: 10px; --r-sm: 6px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; background: var(--gray-50); color: var(--text); font-size: 14px; line-height: 1.6; }
+
+  @media print {
+    .no-print { display: none !important; }
+    .task { page-break-inside: avoid; }
+    body { background: white; font-size: 12px; }
+    .page { box-shadow: none; max-width: 100%; }
+    .detail { display: block !important; }
+  }
+
+  .page { max-width: 900px; margin: 0 auto; background: white; min-height: 100vh; }
+
+  /* HEADER */
+  .header { background: var(--pink-dark); color: white; padding: 32px 40px 28px; }
+  .header h1 { font-size: 26px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 4px; }
+  .header p { font-size: 13px; opacity: 0.7; margin-bottom: 20px; }
+  .prog-wrap { background: rgba(255,255,255,0.15); border-radius: 8px; padding: 14px 18px; }
+  .prog-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+  .prog-count { font-size: 20px; font-weight: 700; }
+  .prog-pct { font-size: 13px; opacity: 0.8; }
+  .prog-bg { height: 6px; background: rgba(255,255,255,0.2); border-radius: 3px; }
+  .prog-fill { height: 100%; background: white; border-radius: 3px; transition: width .4s ease; }
+
+  /* CONTROLS */
+  .controls { padding: 16px 40px; border-bottom: 1px solid var(--border); background: white; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; position: sticky; top: 0; z-index: 50; }
+  .filter-btn { font-size: 12px; padding: 5px 12px; border-radius: 20px; border: 1px solid var(--border); background: transparent; cursor: pointer; color: var(--text-2); transition: all .15s; }
+  .filter-btn:hover { border-color: var(--pink); color: var(--pink-dark); }
+  .filter-btn.active { background: var(--pink-dark); color: white; border-color: var(--pink-dark); }
+  .controls-right { margin-left: auto; display: flex; gap: 6px; }
+  .action-btn { font-size: 12px; padding: 5px 12px; border-radius: 6px; border: 1px solid var(--border); background: transparent; cursor: pointer; color: var(--text-2); }
+  .action-btn:hover { background: var(--gray-100); }
+
+  /* PHASE HEADERS */
+  .phase-header { padding: 20px 40px 10px; display: flex; align-items: center; gap: 12px; }
+  .phase-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+  .ph-title { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--text-3); }
+  .ph-count { font-size: 11px; color: var(--text-3); margin-left: auto; }
+  .phase-items { padding: 0 40px 8px; }
+
+  /* TASK CARDS */
+  .task { border: 1px solid var(--border); border-radius: var(--r); margin-bottom: 8px; background: white; overflow: hidden; transition: opacity .2s; }
+  .task.done { opacity: 0.45; }
+  .task.hidden { display: none; }
+  .task-top { display: flex; align-items: flex-start; gap: 12px; padding: 14px 16px; cursor: pointer; }
+  .task-top:hover { background: var(--gray-50); }
+  .ck-box { width: 20px; height: 20px; border-radius: 5px; border: 1.5px solid var(--gray-200); flex-shrink: 0; margin-top: 1px; display: flex; align-items: center; justify-content: center; transition: all .15s; cursor: pointer; }
+  .task.done .ck-box { background: var(--teal); border-color: var(--teal); }
+  .ck-icon { display: none; color: white; font-size: 12px; font-weight: 700; }
+  .task.done .ck-icon { display: block; }
+  .task-body { flex: 1; min-width: 0; }
+  .task-title { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 3px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .task-sub { font-size: 12px; color: var(--text-2); line-height: 1.5; }
+  .task-meta { display: flex; align-items: center; gap: 6px; margin-left: auto; flex-shrink: 0; }
+  .pri { font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 20px; white-space: nowrap; text-transform: uppercase; letter-spacing: .03em; }
+  .pri-r { background: var(--red-light); color: var(--red-dark); }
+  .pri-a { background: var(--amber-light); color: var(--amber-dark); }
+  .pri-b { background: var(--blue-light); color: var(--blue-dark); }
+  .pri-g { background: var(--green-light); color: var(--green-dark); }
+  .time { font-size: 11px; color: var(--text-3); white-space: nowrap; }
+  .expand-icon { font-size: 11px; color: var(--text-3); flex-shrink: 0; transition: transform .15s; margin-top: 3px; }
+  .task.open .expand-icon { transform: rotate(180deg); }
+
+  /* DETAIL PANEL */
+  .detail { display: none; border-top: 1px solid var(--border); background: var(--gray-50); padding: 16px 20px 18px 52px; }
+  .task.open .detail { display: block; }
+
+  .detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+  .detail-box { background: white; border: 1px solid var(--border); border-radius: var(--r-sm); padding: 12px 14px; }
+  .detail-box h4 { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--text-3); margin-bottom: 8px; }
+  .detail-box p, .detail-box li { font-size: 12px; color: var(--text-2); line-height: 1.65; }
+  .detail-box ul, .detail-box ol { padding-left: 16px; }
+  .detail-box li { margin-bottom: 3px; }
+  .detail-box.full { grid-column: 1 / -1; }
+
+  .steps ol { padding-left: 0; list-style: none; }
+  .steps ol li { display: flex; gap: 10px; margin-bottom: 8px; align-items: flex-start; font-size: 12px; color: var(--text-2); line-height: 1.6; }
+  .step-n { width: 20px; height: 20px; border-radius: 50%; background: var(--blue-light); color: var(--blue-dark); font-size: 10px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+  .steps ol li strong { font-weight: 600; color: var(--text); }
+
+  .done-box { background: var(--teal-light); border: 1px solid #9FE1CB; border-radius: var(--r-sm); padding: 10px 14px; margin-top: 10px; }
+  .done-box p { font-size: 12px; color: var(--teal-dark); }
+  .done-box strong { font-weight: 600; }
+
+  .links { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+  .link-btn { font-size: 11px; padding: 4px 10px; border-radius: 6px; border: 1px solid var(--border); background: white; color: var(--blue); text-decoration: none; cursor: pointer; transition: background .1s; }
+  .link-btn:hover { background: var(--blue-light); }
+
+  .warn-box { background: var(--amber-light); border: 1px solid #FAC775; border-radius: var(--r-sm); padding: 10px 14px; margin-top: 10px; }
+  .warn-box p { font-size: 12px; color: var(--amber-dark); }
+
+  /* FOOTER */
+  .footer-bar { padding: 24px 40px; border-top: 1px solid var(--border); text-align: center; font-size: 12px; color: var(--text-3); background: var(--gray-50); }
+
+  @media (max-width: 600px) {
+    .header, .controls, .phase-header, .phase-items { padding-left: 16px; padding-right: 16px; }
+    .detail { padding-left: 16px; }
+    .detail-grid { grid-template-columns: 1fr; }
+    .task-meta { flex-direction: column; align-items: flex-end; gap: 3px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+<div class="header">
+  <h1>Bloom Eyewear — Master Checklist</h1>
+  <p>April 2026 · Website fixes + full growth plan · Click any task to expand instructions and what "done" looks like</p>
+  <div class="prog-wrap">
+    <div class="prog-top">
+      <span class="prog-count" id="prog-count">0 / 32 complete</span>
+      <span class="prog-pct" id="prog-pct">0%</span>
+    </div>
+    <div class="prog-bg"><div class="prog-fill" id="prog-fill" style="width:0%"></div></div>
+  </div>
+</div>
+
+<div class="controls no-print">
+  <button class="filter-btn active" onclick="filter('all',this)">All tasks</button>
+  <button class="filter-btn" onclick="filter('todo',this)">To do</button>
+  <button class="filter-btn" onclick="filter('done',this)">Done</button>
+  <button class="filter-btn" onclick="filter('fixtoday',this)">Fix today</button>
+  <button class="filter-btn" onclick="filter('week1',this)">Week 1</button>
+  <button class="filter-btn" onclick="filter('week2',this)">Week 2</button>
+  <button class="filter-btn" onclick="filter('month2',this)">Month 2</button>
+  <button class="filter-btn" onclick="filter('month3',this)">Month 3</button>
+  <div class="controls-right">
+    <button class="action-btn" onclick="window.print()">Print / Save PDF</button>
+    <button class="action-btn" onclick="resetAll()">Reset all</button>
+  </div>
+</div>
+
+
+<!-- ===== PHASE 0: FIX TODAY ===== -->
+<div class="phase-header">
+  <div class="phase-dot" style="background:var(--red)"></div>
+  <span class="ph-title">Fix Today — Website bugs (before anything else)</span>
+  <span class="ph-count" id="count-fixtoday"></span>
+</div>
+<div class="phase-items">
+
+  <div class="task" id="tb1" data-phase="fixtoday" onclick="toggleTask(event,'tb1')">
+    <div class="task-top">
+      <div class="ck-box"><span class="ck-icon">✓</span></div>
+      <div class="task-body">
+        <div class="task-title">Fix the broken "returns" link on every product page</div>
+        <div class="task-sub">Every product page links to /returns/ which is a 404 error. Buyers clicking this get a dead page instead of your policy.</div>
+      </div>
+      <div class="task-meta"><span class="pri pri-r">Do first</span><span class="time">~5 min</span><span class="expand-icon">▾</span></div>
+    </div>
+    <div class="detail">
+      <div class="detail-grid">
+        <div class="detail-box steps">
+          <h4>How to fix</h4>
+          <ol>
+            <li><div class="step-n">1</div><span>Shopify Admin → <strong>Online Store → Themes → Customize</strong></span></li>
+            <li><div class="step-n">2</div><span>Navigate to a product page template → find the <strong>General Terms &amp; Conditions</strong> section</span></li>
+            <li><div class="step-n">3</div><span>Change the link from <strong>/returns/</strong> to <strong>/pages/returns</strong></span></li>
+            <li><div class="step-n">4</div><span>Save and verify the link works on a live product page</span></li>
+          </ol>
+          <p style="margin-top:8px;font-size:12px;color:var(--text-3)">This appears on every product page — it's the first link buyers will click when checking your returns policy before buying. A 404 at that moment kills the sale.</p>
+        </div>
+        <div class="detail-box">
+          <h4>Why it matters</h4>
+          <p>At $299–$349, buyers check returns policies before purchasing. It's one of the most-clicked links on a product page. A dead link sends a message that the site isn't maintained — which triggers doubt about the legitimacy of the business. 30 seconds to fix; significant impact on trust.</p>
+        </div>
+      </div>
+      <div class="done-box"><p><strong>Done when:</strong> Clicking "returns" on any product page takes you to the actual returns policy page — no 404 error.</p></div>
+    </div>
+  </div>
+
+  <div class="task" id="tb2" data-phase="fixtoday" onclick="toggleTask(event,'tb2')">
+    <div class="task-top">
+      <div class="ck-box"><span class="ck-icon">✓</span></div>
+      <div class="task-body">
+        <div class="task-title">Fix the two broken "Discover our most iconic eyewear" homepage buttons</div>
+        <div class="task-sub">Both buttons under the Sun and Optical homepage sections link to /optical/ which doesn't exist. Two 404s on the homepage.</div>
+      </div>
+      <div class="task-meta"><span class="pri pri-r">Do first</span><span class="time">~5 min</span><span class="expand-icon">▾</span></div>
+    </div>
+    <div class="detail">
+      <div class="detail-grid">
+        <div class="detail-box steps">
+          <h4>The fix</h4>
+          <ol>
+            <li><div class="step-n">1</div><span>Shopify Admin → <strong>Online Store → Themes → Customize</strong></span></li>
+            <li><div class="step-n">2</div><span>Navigate to the <strong>Homepage</strong> in the theme editor</span></li>
+            <li><div class="step-n">3</div><span>Find the Sun section button → change link to <strong>/collections/sunglasses</strong></span></li>
+            <li><div class="step-n">4</div><span>Find the Optical section button → change link to <strong>/collections/optical</strong></span></li>
+            <li><div class="step-n">5</div><span>Save and test both buttons on the live homepage</span></li>
+          </ol>
+        </div>
+        <div class="detail-box">
+          <h4>Impact</h4>
+          <p>These are primary CTA buttons on your homepage — the most visited page on the site. Visitors clicking these to browse either collection hit a 404 and typically leave. This is losing you warm traffic right at the top of your funnel.</p>
+        </div>
+      </div>
+      <div class="done-box"><p><strong>Done when:</strong> Both homepage buttons take you to the correct collections — sunglasses and optical — with no 404 errors.</p></div>
+    </div>
+  </div>
+
+  <div class="task" id="tb3" data-phase="fixtoday" onclick="toggleTask(event,'tb3')">
+    <div class="task-top">
+      <div class="ck-box"><span class="ck-icon">✓</span></div>
+      <div class="task-body">
+        <div class="task-title">Complete the broken FAQ returns answer</div>
+        <div class="task-sub">The answer to "What is your return and exchange policy?" ends mid-sentence: "Please visit our" — with no link. Looks broken and unprofessional.</div>
+      </div>
+      <div class="task-meta"><span class="pri pri-r">Do first</span><span class="time">~5 min</span><span class="expand-icon">▾</span></div>
+    </div>
+    <div class="detail">
+      <div class="detail-grid">
+        <div class="detail-box steps">
+          <h4>How to fix</h4>
+          <ol>
+            <li><div class="step-n">1</div><span>Shopify Admin → <strong>Online Store → Pages</strong> → open your FAQ page</span></li>
+            <li><div class="step-n">2</div><span>Find the returns FAQ answer — it currently ends with "Please visit our"</span></li>
+            <li><div class="step-n">3</div><span>Complete the sentence: <strong>"Please visit our <a href='/pages/returns'>Returns &amp; Exchanges page</a> for full details."</strong></span></li>
+            <li><div class="step-n">4</div><span>Save and check the FAQ page looks correct</span></li>
+          </ol>
+        </div>
+        <div class="detail-box">
+          <h4>Suggested answer text</h4>
+          <p style="background:var(--gray-100);padding:10px;border-radius:6px;font-size:12px;line-height:1.7">"We offer a 30-day returns policy. If you're not completely happy with your frames, simply email us within 30 days of receiving your order and we'll arrange a return. Please visit our <a href='/pages/returns'>Returns &amp; Exchanges page</a> for full details."</p>
+        </div>
+      </div>
+      <div class="done-box"><p><strong>Done when:</strong> The FAQ returns answer is complete, makes sense, and links correctly to the returns page.</p></div>
+    </div>
+  </div>
+
+  <div class="task" id="tb4" data-phase="fixtoday" onclick="toggleTask(event,'tb4')">
+    <div class="task-top">
+      <div class="ck-box"><span class="ck-icon">✓</span></div>
+      <div class="task-body">
+        <div class="task-title">Fix the "Recieve" typo in the email signup button</div>
+        <div class="task-sub">"Recieve my discount" appears on the homepage and footer on every page. Small thing — big signal at a $300+ price point.</div>
+      </div>
+      <div class="task-meta"><span class="pri pri-r">Do first</span><span class="time">~2 min</span><span class="expand-icon">▾</span></div>
+    </div>
+    <div class="detail">
+      <div class="detail-grid">
+        <div class="detail-box steps">
+          <h4>How to fix</h4>
+          <ol>
+            <li><div class="step-n">1</div><span>Shopify Admin → <strong>Online Store → Themes → Customize</strong></span></li>
+            <li><div class="step-n">2</div><span>Search for "Recieve" in the theme editor — it will be in your email signup section settings</span></li>
+            <li><div class="step-n">3</div><span>Change to <strong>"Receive my discount"</strong></span></li>
+            <li><div class="step-n">4</div><span>Save — it will update everywhere the signup appears (homepage + footer) automatically</span></li>
+          </ol>
+          <p style="margin-top:8px;font-size:12px;color:var(--text-3)">Alternatively: Themes → Actions → Edit code → search "Recieve" in template files and correct directly.</p>
+        </div>
+        <div class="detail-box">
+          <h4>Why this matters</h4>
+          <p>A typo on a $300+ product page is a trust signal — in the wrong direction. It tells new visitors the site was set up quickly and not carefully proofread. It's a 2-minute fix that removes a subtle but real friction point for first-time buyers.</p>
+        </div>
+      </div>
+      <div class="done-box"><p><strong>Done when:</strong> The email signup button correctly reads "Receive my discount" on both the homepage popup and the footer signup.</p></div>
+    </div>
+  </div>
+
+</div><!-- /fix today items -->
+
+
+<!-- ===== PHASE 1: WEEK 1 ===== -->
+<div class="phase-header">
+  <div class="phase-dot" style="background:var(--red)"></div>
+  <span class="ph-title">Week 1 — Foundation (before any ad spend)</span>
+  <span class="ph-count" id="count-week1"></span>
+</div>
+<div class="phase-items">
+
+  <!-- TASK 1 -->
+  <div class="task" id="t1" data-phase="week1" onclick="toggleTask(event,'t1')">
+    <div class="task-top">
+      <div class="ck-box"><span class="ck-icon">✓</span></div>
+      <div class="task-body">
+        <div class="task-title">Install GA4 via Google &amp; YouTube Shopify app</div>
+        <div class="task-sub">Connect Google Analytics 4 to your Shopify store to track the full customer journey</div>
+      </div>
+      <div class="task-meta">
+        <span class="pri pri-r">Critical</span>
+        <span class="time">~20 min</span>
+        <span class="expand-icon">▾</span>
+      </div>
+    </div>
+    <div class="detail">
+      <div class="detail-grid">
+        <div class="detail-box steps">
+          <h4>Step-by-step</h4>
+          <ol>
+            <li><div class="step-n">1</div><span>Go to your <strong>Shopify Admin</strong> → click <strong>Apps</strong> in the left menu</span></li>
+            <li><div class="step-n">2</div><span>Search <strong>"Google &amp; YouTube"</strong> → click the app → click <strong>Install</strong></span></li>
+            <li><div class="step-n">3</div><span>Click <strong>Connect Google Account</strong> → sign in to the Google account that owns your GA4 property</span></li>
+            <li><div class="step-n">4</div><span>In the app, scroll to <strong>"Your Google Analytics property"</strong> → click <strong>Connect</strong> → select your GA4 property from the dropdown</span></li>
+            <li><div class="step-n">5</div><span>Click <strong>Confirm</strong> — Shopify will now automatically add the GA4 tracking code to your store</span></li>
+            <li><div class="step-n">6</div><span><strong>Verify it works:</strong> Go to analytics.google.com → Admin → DebugView → open your store in a new tab and browse around. You should see events populating in real time.</span></li>
+          </ol>
+        </div>
+        <div class="detail-box">
+          <h4>What GA4 tracks automatically</h4>
+          <ul>
+            <li>Page views and session data</li>
+            <li>Add to cart events</li>
+            <li>Checkout started</li>
+            <li>Purchases (with revenue)</li>
+            <li>Traffic sources (where visitors came from)</li>
+            <li>Product views per page</li>
+          </ul>
+          <div class="links">
+            <a class="link-btn" href="https://apps.shopify.com/google" target="_blank">Shopify App Store — Google &amp; YouTube →</a>
+            <a class="link-btn" href="https://analytics.google.com" target="_blank">Google Analytics →</a>
+            <a class="link-btn" href="https://help.shopify.com/en/manual/reports-and-analytics/google-analytics/google-analytics-setup" target="_blank">Shopify Help: GA4 setup →</a>
+          </div>
+        </div>
+      </div>
+      <div class="done-box"><p><strong>Done when:</strong> You can see your own store visit appearing in GA4 DebugView in real time. Events like page_view and session_start are firing. Take a screenshot as proof.</p></div>
+      <div class="warn-box"><p><strong>Important:</strong> GA4 can take 24–48 hours to show data in standard reports. DebugView works immediately for verification. Don't wait for standard reports before moving on.</p></div>
+    </div>
+  </div>
+
+  <!-- TASK 2 -->
+  <div class="task" id="t2" data-phase="week1" onclick="toggleTask(event,'t2')">
+    <div class="task-top">
+      <div class="ck-box"><span class="ck-icon">✓</span></div>
+      <div class="task-body">
+        <div class="task-title">Install Meta Pixel + enable Conversions API (CAPI)</div>
+        <div class="task-sub">Track ad performance accurately — Pixel alone is not enough in 2026 due to iOS privacy changes</div>
+      </div>
+      <div class="task-meta">
+        <span class="pri pri-r">Critical</span>
+        <span class="time">~25 min</span>
+        <span class="expand-icon">▾</span>
+      </div>
+    </div>
+    <div class="detail">
+      <div class="detail-grid">
+        <div class="detail-box steps">
+          <h4>Step-by-step — Pixel</h4>
+          <ol>
+            <li><div class="step-n">1</div><span>Shopify Admin → Apps → search <strong>"Facebook &amp; Instagram"</strong> → Install</span></li>
+            <li><div class="step-n">2</div><span>Click <strong>Start Setup</strong> → connect your <strong>Facebook Business account</strong></span></li>
+            <li><div class="step-n">3</div><span>Select your <strong>Facebook Page</strong> and your <strong>Meta Pixel</strong> (create one in Meta Business Manager if you don't have one yet)</span></li>
+            <li><div class="step-n">4</div><span>Complete the setup wizard — Shopify installs the Pixel code automatically</span></li>
+          </ol>
+          <h4 style="margin-top:12px">Step-by-step — CAPI (do immediately after)</h4>
+          <ol>
+            <li><div class="step-n">1</div><span>In the <strong>Facebook &amp; Instagram Shopify app</strong> → click <strong>Settings</strong></span></li>
+            <li><div class="step-n">2</div><span>Find <strong>"Data sharing"</strong> section → set sharing level to <strong>"Maximum"</strong></span></li>
+            <li><div class="step-n">3</div><span>Click <strong>Confirm</strong> — CAPI is now sending server-side data to Meta</span></li>
+          </ol>
+        </div>
+        <div class="detail-box">
+          <h4>Why CAPI matters in 2026</h4>
+          <p>The Meta Pixel works via the browser. Since iOS 14+, Apple blocks many of these signals. CAPI sends purchase data directly from your Shopify server to Meta — bypassing the browser entirely. Without it, Meta may miss 20–40% of actual purchases, making your ROAS look lower than it really is and causing the algorithm to under-optimise.</p>
+          <h4 style="margin-top:12px">How to verify the Pixel is working</h4>
+          <ul>
+            <li>Install <strong>Meta Pixel Helper</strong> Chrome extension (free)</li>
+            <li>Visit your store — the extension icon should show green with a number</li>
+            <li>Complete a test purchase on your store</li>
+            <li>In Meta Events Manager, check that a <strong>Purchase</strong> event fired</li>
+          </ul>
+          <div class="links">
+            <a class="link-btn" href="https://apps.shopify.com/facebook-store" target="_blank">Facebook &amp; Instagram Shopify app →</a>
+            <a class="link-btn" href="https://business.facebook.com/events_manager" target="_blank">Meta Events Manager →</a>
+            <a class="link-btn" href="https://chrome.google.com/webstore/detail/meta-pixel-helper/fdgfkebogiimcoedlicjlajpkdmockpc" target="_blank">Meta Pixel Helper Chrome extension →</a>
+          </div>
+        </div>
+      </div>
+      <div class="done-box"><p><strong>Done when:</strong> Meta Pixel Helper shows green on your store pages AND a Purchase event appears in Meta Events Manager after a test order. Screenshot both.</p></div>
+    </div>
+  </div>
+
+  <!-- TASK 3 -->
+  <div class="task" id="t3" data-phase="week1" onclick="toggleTask(event,'t3')">
+    <div class="task-top">
+      <div class="ck-box"><span class="ck-icon">✓</span></div>
+      <div class="task-body">
+        <div class="task-title">Seed 5–10 genuine reviews before running any traffic</div>
+        <div class="task-sub">Install Judge.me or Loox. Send pairs to real women 40–60. Zero reviews kills conversion at $349.</div>
+      </div>
+      <div class="task-meta">
+        <span class="pri pri-r">Critical</span>
+        <span class="time">~1 hr setup + 1 week wait</span>
+        <span class="expand-icon">▾</span>
+      </div>
+    </div>
+    <div class="detail">
+      <div class="detail-grid">
+        <div class="detail-box steps">
+          <h4>Step-by-step — install Judge.me</h4>
+          <ol>
+            <li><div class="step-n">1</div><span>Shopify Admin → Apps → search <strong>"Judge.me"</strong> → Install (free tier available)</span></li>
+            <li><div class="step-n">2</div><span>Judge.me will walk you through connecting to your store and placing the review widget on product pages — follow their setup wizard</span></li>
+            <li><div class="step-n">3</div><span>In Judge.me dashboard → <strong>Reviews</strong> → <strong>Import</strong> — you can manually add reviews from people you gift pairs to</span></li>
+            <li><div class="step-n">4</div><span>Set up the <strong>automatic review request email</strong> — triggers 14 days after an order is fulfilled</span></li>
+          </ol>
+          <h4 style="margin-top:12px">Getting your first seed reviews</h4>
+          <ol>
+            <li><div class="step-n">1</div><span>Identify 5 women aged 40–60 who match your target customer — friends, family, community connections</span></li>
+            <li><div class="step-n">2</div><span>Send them a pair with a personal note: "Honest feedback only — tell us exactly what you think"</span></li>
+            <li><div class="step-n">3</div><span>Ask for: written review + at least one photo wearing the frames</span></li>
+            <li><div class="step-n">4</div><span>Import their reviews into Judge.me manually if they don't come through the automated email</span></li>
+          </ol>
+        </div>
+        <div class="detail-box">
+          <h4>What makes a good seed review</h4>
+          <ul>
+            <li>Written by a woman visibly in the 40–60 age range</li>
+            <li>Mentions fit, comfort, and how the frames look on her face</li>
+            <li>Includes a photo of her wearing them</li>
+            <li>Mentions the specific frame and colour name</li>
+            <li>Star rating: honest — even 4 stars is fine, don't fake 5s</li>
+          </ul>
+          <h4 style="margin-top:12px">Why this can't wait</h4>
+          <p>At $349, buyers read reviews before purchasing. A product page with zero reviews tells a buyer "no one has bought this yet" — which triggers doubt. Even 3 reviews transforms the page psychology. Photo reviews convert at 3× the rate of text-only reviews.</p>
+          <div class="links">
+            <a class="link-btn" href="https://apps.shopify.com/judge-me-product-reviews" target="_blank">Judge.me on Shopify App Store →</a>
+            <a class="link-btn" href="https://apps.shopify.com/loox" target="_blank">Loox (photo reviews alternative) →</a>
+          </div>
+        </div>
+      </div>
+      <div class="done-box"><p><strong>Done when:</strong> At least 3 reviews (with photos) are visible on at least one product page. Review widget is appearing on product pages. Auto-request email is set to fire 14 days post-delivery.</p></div>
+    </div>
+  </div>
+
+  <!-- TASK 4 -->
+  <div class="task" id="t4" data-phase="week1" onclick="toggleTask(event,'t4')">
+    <div class="task-top">
+      <div class="ck-box"><span class="ck-icon">✓</span></div>
+      <div class="task-body">
+        <div class="task-title">Add frame measurements to every product page</div>
+        <div class="task-sub">Lens width, bridge, temple length, total width, lens height — all in mm. Get specs from owner/supplier first.</div>
+      </div>
+      <div class="task-meta">
+        <span class="pri pri-r">Critical</span>
+        <span class="time">~2 hrs (once specs received)</span>
+        <span class="expand-icon">▾</span>
+      </div>
+    </div>
+    <div class="detail">
+      <div class="detail-grid">
+        <div class="detail-box steps">
+          <h4>Step-by-step — adding to Shopify</h4>
+          <ol>
+            <li><div class="step-n">1</div><span><strong>Get the specs first</strong> — send the owner the info-request email. Ask them to forward the supplier spec sheet if they have one.</span></li>
+            <li><div class="step-n">2</div><span>Once you have specs, go to <strong>Shopify Admin → Products</strong> → click on a product</span></li>
+            <li><div class="step-n">3</div><span>Scroll to <strong>"Metafields"</strong> at the bottom of the product page (if not visible, go to Settings → Custom data → Products and add metafields for each measurement)</span></li>
+            <li><div class="step-n">4</div><span>Alternatively, add measurements directly into the <strong>product description</strong> using a simple formatted table — faster with no developer needed</span></li>
+            <li><div class="step-n">5</div><span>Repeat for every frame in the range</span></li>
+          </ol>
+          <h4 style="margin-top:12px">How to display the measurements</h4>
+          <p style="font-size:12px;margin-top:4px">Standard industry format: <strong>52 □ 18 — 140</strong> (lens width □ bridge — temple). Add lens height separately as it's particularly important for progressive lens wearers (optical frames).</p>
+        </div>
+        <div class="detail-box">
+          <h4>What each measurement means</h4>
+          <ul>
+            <li><strong>Lens width:</strong> horizontal width of one lens at its widest point (mm). Typical: 48–56mm</li>
+            <li><strong>Bridge width:</strong> gap between the two lenses at the nose (mm). Typical: 14–24mm</li>
+            <li><strong>Temple length:</strong> hinge to tip of arm (mm). Common: 135, 140, 145mm</li>
+            <li><strong>Total frame width:</strong> full width across the front including rims</li>
+            <li><strong>Lens height:</strong> vertical height of lens — must be 30mm+ for progressive lenses</li>
+          </ul>
+          <h4 style="margin-top:12px">Note on existing size guide</h4>
+          <p>The Bloom site already has a size guide — this is a good start. But buyers need per-frame measurements on each product page, not just a general guide. Each frame has different dimensions.</p>
+        </div>
+      </div>
+      <div class="done-box"><p><strong>Done when:</strong> Every product page shows at minimum: lens width, bridge width, temple length, and total frame width. Lens height on all optical frames. Measurements visible without scrolling or clicking away.</p></div>
+    </div>
+  </div>
+
+  <!-- TASK 5 -->
+  <div class="task" id="t5" data-phase="week1" onclick="toggleTask(event,'t5')">
+    <div class="task-top">
+      <div class="ck-box"><span class="ck-icon">✓</span></div>
+      <div class="task-body">
+        <div class="task-title">Add face shape recommendation to every product page</div>
+        <div class="task-sub">One line under the frame name: "Best for: Oval · Heart · Square." No developer needed.</div>
+      </div>
+      <div class="task-meta">
+        <span class="pri pri-r">Critical</span>
+        <span class="time">~1 hr</span>
+        <span class="expand-icon">▾</span>
+      </div>
+    </div>
+    <div class="detail">
+      <div class="detail-grid">
+        <div class="detail-box steps">
+          <h4>Step-by-step</h4>
+          <ol>
+            <li><div class="step-n">1</div><span>Get face shape recommendations from the owner (via the info-request email) OR work out from frame dimensions: wide frames suit narrow/oval faces, narrow frames suit wide/square faces, rounded frames suit square faces</span></li>
+            <li><div class="step-n">2</div><span>Shopify Admin → Products → open each product</span></li>
+            <li><div class="step-n">3</div><span>Add to the product description (or a metafield if your theme supports it): <strong>"Best for: Oval · Heart · Oblong faces"</strong></span></li>
+            <li><div class="step-n">4</div><span>Add a text link directly after: <strong>"Not sure? Find your face shape →"</strong> — link this to your face shape guide page (once built in Month 2)</span></li>
+            <li><div class="step-n">5</div><span>Repeat across all products</span></li>
+          </ol>
+        </div>
+        <div class="detail-box">
+          <h4>General face shape guide for frames</h4>
+          <ul>
+            <li><strong>Oval face:</strong> most frame shapes work — lucky! Avoid very oversized.</li>
+            <li><strong>Round face:</strong> angular frames (square, rectangular) add definition</li>
+            <li><strong>Square face:</strong> round or oval frames soften angles</li>
+            <li><strong>Heart face:</strong> wider at bottom, rimless or light frames work well</li>
+            <li><strong>Oblong face:</strong> taller frames with decorative temples</li>
+          </ul>
+          <p style="margin-top:8px;font-size:12px">If you're unsure which face shapes suit each Bloom frame, send me the frame dimensions and I'll work out the recommendations for you.</p>
+        </div>
+      </div>
+      <div class="done-box"><p><strong>Done when:</strong> Every product page has a "Best for: [face shapes]" line visible on the page, ideally near the top of the description or just below the product title.</p></div>
+    </div>
+  </div>
+
+  <!-- TASK 6 -->
+  <div class="task" id="t6" data-phase="week1" onclick="toggleTask(event,'t6')">
+    <div class="task-top">
+      <div class="ck-box"><span class="ck-icon">✓</span></div>
+      <div class="task-body">
+        <div class="task-title">Add frame material &amp; construction to every product page</div>
+        <div class="task-sub">Frame material, temple type, hinge, nose pads, weight. Get from owner/supplier spec sheet.</div>
+      </div>
+      <div class="task-meta">
+        <span class="pri pri-r">Critical</span>
+        <span class="time">~1 hr (once specs received)</span>
+        <span class="expand-icon">▾</span>
+      </div>
+    </div>
+    <div class="detail">
+      <div class="detail-grid">
+        <div class="detail-box steps">
+          <h4>What to add per product</h4>
+          <ol>
+            <li><div class="step-n">1</div><span><strong>Frame material</strong> — e.g. "Premium Italian acetate", "Lightweight TR90 nylon", "Stainless steel"</span></li>
+            <li><div class="step-n">2</div><span><strong>Temple/arm material</strong> — often same as frame but not always</span></li>
+            <li><div class="step-n">3</div><span><strong>Hinge type</strong> — "Spring hinge" (flexes outward, more forgiving fit) or "Standard hinge"</span></li>
+            <li><div class="step-n">4</div><span><strong>Nose pads</strong> — "Fixed nose pads" or "Adjustable silicone nose pads" — important for buyers with low bridges</span></li>
+            <li><div class="step-n">5</div><span><strong>Frame weight</strong> — even approximate ("Approx. 22g — lightweight wear") is valuable at $349</span></li>
+          </ol>
+        </div>
+        <div class="detail-box">
+          <h4>Common materials explained simply</h4>
+          <ul>
+            <li><strong>Acetate:</strong> premium plastic, rich colours, hypoallergenic, slightly heavier</li>
+            <li><strong>TR90:</strong> flexible nylon, very lightweight, memory return, great for active wear</li>
+            <li><strong>Stainless steel:</strong> durable, lightweight, adjustable nose pads, minimal allergic reaction</li>
+            <li><strong>Titanium:</strong> premium, ultra-lightweight, hypoallergenic, corrosion resistant</li>
+          </ul>
+          <h4 style="margin-top:10px">If specs aren't available yet</h4>
+          <p>Ask the owner to check the original supplier invoice or product catalogue — this info will be there. Alternatively, ask them to physically check the frames and report back.</p>
+        </div>
+      </div>
+      <div class="done-box"><p><strong>Done when:</strong> Every product page clearly states the frame material, hinge type, and nose pad type. Weight is a nice-to-have bonus.</p></div>
+    </div>
+  </div>
+
+  <!-- TASK 7 -->
+  <div class="task" id="t7" data-phase="week1" onclick="toggleTask(event,'t7')">
+    <div class="task-top">
+      <div class="ck-box"><span class="ck-icon">✓</span></div>
+      <div class="task-body">
+        <div class="task-title">Add UV protection + lens details to all sun frames</div>
+        <div class="task-sub">UV400, lens category (Cat 1–4), tint colour, polarised yes/no. Critical for Australian buyers.</div>
+      </div>
+      <div class="task-meta">
+        <span class="pri pri-r">Critical — sun range</span>
+        <span class="time">~45 min (once specs received)</span>
+        <span class="expand-icon">▾</span>
+      </div>
+    </div>
+    <div class="detail">
+      <div class="detail-grid">
+        <div class="detail-box steps">
+          <h4>What to add to each sun frame page</h4>
+          <ol>
+            <li><div class="step-n">1</div><span><strong>UV rating</strong> — "UV400 protection" (blocks all UVA + UVB rays up to 400nm wavelength)</span></li>
+            <li><div class="step-n">2</div><span><strong>UVA + UVB</strong> — "100% UVA and UVB protection" (confirm with supplier)</span></li>
+            <li><div class="step-n">3</div><span><strong>Lens category</strong> — Cat 1 (very light tint, fashion), Cat 2 (medium, variable light), Cat 3 (dark, general use, driving), Cat 4 (very dark, extreme sun — NOT for driving)</span></li>
+            <li><div class="step-n">4</div><span><strong>Polarised</strong> — Yes or No. Polarised lenses reduce glare from reflective surfaces (water, roads, glass). A frequently searched filter.</span></li>
+            <li><div class="step-n">5</div><span><strong>Lens tint + what it's ideal for</strong> — e.g. "Grey tint — true colour perception, ideal for driving and everyday use"</span></li>
+            <li><div class="step-n">6</div><span><strong>Lens material</strong> — e.g. polycarbonate, CR-39</span></li>
+          </ol>
+        </div>
+        <div class="detail-box">
+          <h4>Lens tint colour guide</h4>
+          <ul>
+            <li><strong>Grey/Smoke:</strong> true colour, minimal distortion, great all-rounder</li>
+            <li><strong>Brown/Amber:</strong> enhances contrast, warm tones, great for driving</li>
+            <li><strong>Green:</strong> natural colour rendering, reduces eye strain</li>
+            <li><strong>Pink/Rose:</strong> fashion tint, indoor/low light, not for intense sun</li>
+            <li><strong>Blue/Mirror:</strong> fashion tint, reduces glare in bright conditions</li>
+          </ul>
+          <h4 style="margin-top:10px">Why this matters in Australia</h4>
+          <p>Australia has some of the world's highest UV levels. Australian buyers are highly aware of UV protection — it's a genuine health concern, not just a feature. Missing UV data signals to buyers that the product may be fashion-only with no real protection. This alone can block a sale.</p>
+        </div>
+      </div>
+      <div class="done-box"><p><strong>Done when:</strong> Every sun frame page clearly states UV400 protection, lens category, and polarised status. Tint description explains what it's best for.</p></div>
+      <div class="warn-box"><p><strong>Note:</strong> Only state "UV400" and "100% UVA+UVB" if the supplier has confirmed this. Under Australian Consumer Law, product claims must be accurate. If you don't have this confirmed, write "UV protection — full details on request" temporarily until confirmed.</p></div>
+    </div>
+  </div>
+
+  <!-- TASK 8 -->
+  <div class="task" id="t8" data-phase="week1" onclick="toggleTask(event,'t8')">
+    <div class="task-top">
+      <div class="ck-box"><span class="ck-icon">✓</span></div>
+      <div class="task-body">
+        <div class="task-title">Add lens suitability info to all optical frames</div>
+        <div class="task-sub">Lens height (mm), single vision / progressive / bifocal suitability, "frame only" note.</div>
+      </div>
+      <div class="task-meta">
+        <span class="pri pri-r">Critical — optical range</span>
+        <span class="time">~30 min</span>
+        <span class="expand-icon">▾</span>
+      </div>
+    </div>
+    <div class="detail">
+      <div class="detail-grid">
+        <div class="detail-box steps">
+          <h4>What to add to each optical frame page</h4>
+          <ol>
+            <li><div class="step-n">1</div><span><strong>Lens height in mm</strong> — the vertical height of the lens aperture. This determines progressive lens compatibility. Must be 30mm+ for progressives, ideally 35mm+.</span></li>
+            <li><div class="step-n">2</div><span><strong>Lens suitability statement</strong> — e.g. "Suitable for: Single vision lenses · Progressive lenses · Bifocal lenses" (circle/list whichever applies based on lens height)</span></li>
+            <li><div class="step-n">3</div><span><strong>Frame only note</strong> — add clearly: "This listing is for the frame only. Bring your frame to any optical store or optometrist for lens fitting."</span></li>
+            <li><div class="step-n">4</div><span><strong>Frame size label</strong> — Narrow / Medium / Wide. Buyers with prescription glasses know their face width and need this to shortlist frames quickly.</span></li>
+          </ol>
+        </div>
+        <div class="detail-box">
+          <h4>Progressive lens rule of thumb</h4>
+          <ul>
+            <li>Lens height &lt;28mm: single vision only</li>
+            <li>Lens height 28–32mm: single vision, some progressives (short corridor)</li>
+            <li>Lens height 32–35mm: suitable for most progressives</li>
+            <li>Lens height 35mm+: ideal for all progressives and bifocals</li>
+          </ul>
+          <p style="margin-top:8px;font-size:12px">Many of Bloom's target customers (40–60) will be progressive lens wearers — presbyopia (needing reading glasses) typically begins around 40–45. This information is genuinely decision-critical for a significant portion of your buyers.</p>
+        </div>
+      </div>
+      <div class="done-box"><p><strong>Done when:</strong> All optical frame pages clearly state lens height, which prescription types the frame accommodates, and that it's a frame-only purchase.</p></div>
+    </div>
+  </div>
+
+  <!-- TASK 9 -->
+  <div class="task" id="t9" data-phase="week1" onclick="toggleTask(event,'t9')">
+    <div class="task-top">
+      <div class="ck-box"><span class="ck-icon">✓</span></div>
+      <div class="task-body">
+        <div class="task-title">Add returns + shipping trust icons near the Add to Cart button</div>
+        <div class="task-sub">Free shipping · 30-day returns · Secure checkout — visible at point of purchase, not buried in footer.</div>
+      </div>
+      <div class="task-meta">
+        <span class="pri pri-r">Critical</span>
+        <span class="time">~20 min</span>
+        <span class="expand-icon">▾</span>
+      </div>
+    </div>
+    <div class="detail">
+      <div class="detail-grid">
+        <div class="detail-box steps">
+          <h4>Step-by-step in Shopify</h4>
+          <ol>
+            <li><div class="step-n">1</div><span>Shopify Admin → Online Store → Themes → click <strong>Customize</strong> on your active theme</span></li>
+            <li><div class="step-n">2</div><span>Navigate to a product page template in the theme editor</span></li>
+            <li><div class="step-n">3</div><span>Look for a <strong>"Trust badges"</strong> or <strong>"Icon with text"</strong> block near the product form — most modern Shopify themes include this</span></li>
+            <li><div class="step-n">4</div><span>Add three lines: (1) Free express shipping to Australia, (2) 30-day returns — no questions asked, (3) Secure checkout</span></li>
+            <li><div class="step-n">5</div><span>If your theme doesn't have a trust badge block, add this text directly into the product description just above or below the price</span></li>
+          </ol>
+        </div>
+        <div class="detail-box">
+          <h4>Why this needs to be on the product page</h4>
+          <p>Bloom already has free shipping and 30-day returns — but they're not visible when a buyer is deciding whether to click "Add to Cart." The two biggest barriers to buying eyewear online are fit anxiety (solved by face shape guide + virtual try-on) and returns risk (solved by your returns policy — but only if the buyer sees it). Right now they'd have to go hunting for it.</p>
+          <h4 style="margin-top:10px">Exact wording suggestion</h4>
+          <ul>
+            <li>🚚 Free express shipping — delivered in 3–5 business days</li>
+            <li>↩ 30-day returns — change your mind, no worries</li>
+            <li>🔒 Secure checkout — SSL encrypted</li>
+          </ul>
+        </div>
+      </div>
+      <div class="done-box"><p><strong>Done when:</strong> All three trust signals are visible on every product page without any scrolling, directly near the Add to Cart button.</p></div>
+    </div>
+  </div>
+
+  <!-- TASK 10 -->
+  <div class="task" id="t10" data-phase="week1" onclick="toggleTask(event,'t10')">
+    <div class="task-top">
+      <div class="ck-box"><span class="ck-icon">✓</span></div>
+      <div class="task-body">
+        <div class="task-title">Add colour descriptions in plain English for all colourways</div>
+        <div class="task-sub">"Lions Tail — warm amber tortoise with gold detail." Mobile buyers can't see swatches clearly.</div>
+      </div>
+      <div class="task-meta">
+        <span class="pri pri-a">This week</span>
+        <span class="time">~30 min</span>
+        <span class="expand-icon">▾</span>
+      </div>
+    </div>
+    <div class="detail">
+      <div class="detail-grid">
+        <div class="detail-box">
+          <h4>Colour names across the Bloom range</h4>
+          <p>Ask the owner to describe each colour, or use these as a starting point to confirm/adjust:</p>
+          <ul style="margin-top:8px">
+            <li><strong>Lions Tail</strong> — warm amber tortoise with gold flecks</li>
+            <li><strong>Magenta Majesty</strong> — deep berry with a purple-pink sheen</li>
+            <li><strong>Petunia</strong> — soft dusty pink, subtle shimmer</li>
+            <li><strong>Queen of the Night</strong> — deep midnight navy or black-purple</li>
+            <li><strong>Babies Breath</strong> — pale blush, almost translucent white-pink</li>
+            <li><strong>Blossom</strong> — warm rose pink, medium tone</li>
+            <li><strong>Periwinkle</strong> — soft blue-lilac, delicate</li>
+            <li><strong>Rosy Red</strong> — rich warm red, confident statement</li>
+            <li><strong>Sienna Marble</strong> — warm brown with natural marble veining</li>
+            <li><strong>Precious Peony</strong> — medium pink, slightly cooler tone</li>
+            <li><strong>Cornflower</strong> — bright medium blue, summery</li>
+            <li><strong>Rainbow Bloom</strong> — multicolour or iridescent finish</li>
+            <li><strong>Grassroots</strong> — olive or forest green, earthy</li>
+            <li><strong>Midnight Iris</strong> — deep purple-blue, dramatic</li>
+            <li><strong>Myrtle</strong> — rich dark green, classic</li>
+          </ul>
+          <p style="margin-top:8px;font-size:12px;color:var(--text-3)">Confirm these with the owner — they know what they actually look like.</p>
+        </div>
+        <div class="detail-box steps">
+          <h4>How to add in Shopify</h4>
+          <ol>
+            <li><div class="step-n">1</div><span>Shopify Admin → Products → open a product</span></li>
+            <li><div class="step-n">2</div><span>Scroll to the product description and add a <strong>"Colours"</strong> section listing each colourway with its plain English description</span></li>
+            <li><div class="step-n">3</div><span>Alternatively, if your theme supports variant metafields, add descriptions to each colour variant individually so they appear dynamically when the buyer selects that colour</span></li>
+          </ol>
+          <h4 style="margin-top:12px">Why it matters on mobile</h4>
+          <p>On a mobile screen, colour swatches are small circles about 20px wide. Colour names like "Magenta Majesty" are evocative but don't help a buyer decide between variants. A one-line description next to each name removes the guesswork completely.</p>
+        </div>
+      </div>
+      <div class="done-box"><p><strong>Done when:</strong> Every product page lists each colour with a short plain English description alongside the colour name. Confirmed as accurate by the owner.</p></div>
+    </div>
+  </div>
+
+  <!-- TASK 11 -->
+  <div class="task" id="t11" data-phase="week1" onclick="toggleTask(event,'t11')">
+    <div class="task-top">
+      <div class="ck-box"><span class="ck-icon">✓</span></div>
+      <div class="task-body">
+        <div class="task-title">Enable Instagram Shopping + connect to Shopify catalogue</div>
+        <div class="task-sub">Tag products in every Instagram post and Story. Lets micro-influencers tag your products too.</div>
+      </div>
+      <div class="task-meta">
+        <span class="pri pri-r">Critical</span>
+        <span class="time">~45 min</span>
+        <span class="expand-icon">▾</span>
+      </div>
+    </div>
+    <div class="detail">
+      <div class="detail-grid">
+        <div class="detail-box steps">
+          <h4>Step-by-step</h4>
+          <ol>
+            <li><div class="step-n">1</div><span>Make sure your <strong>Instagram account is a Business account</strong> (Settings → Account → Switch to Professional Account)</span></li>
+            <li><div class="step-n">2</div><span>Go to <strong>Meta Commerce Manager</strong> at business.facebook.com/commerce</span></li>
+            <li><div class="step-n">3</div><span>Click <strong>Add a Catalogue</strong> → select <strong>Ecommerce</strong> → connect to your Shopify store</span></li>
+            <li><div class="step-n">4</div><span>In your Instagram app → <strong>Settings → Business → Shopping</strong> → select your catalogue → submit for review</span></li>
+            <li><div class="step-n">5</div><span>Meta reviews and approves Shopping access (usually 1–3 business days)</span></li>
+            <li><div class="step-n">6</div><span>Once approved, tag products in new posts by tapping <strong>"Tag products"</strong> before publishing</span></li>
+          </ol>
+        </div>
+        <div class="detail-box">
+          <h4>What this unlocks</h4>
+          <ul>
+            <li>Product tags on feed posts and Reels — viewers tap to see price and buy</li>
+            <li>Product stickers on Stories</li>
+            <li>Shop tab on your Instagram profile</li>
+            <li>Ability for micro-influencers to tag your products in their posts</li>
+            <li>In-app shopping experience — reduces friction to purchase</li>
+          </ul>
+          <h4 style="margin-top:10px">Requirements</h4>
+          <ul>
+            <li>Instagram Business account ✓</li>
+            <li>Connected Facebook Page ✓ (should already be done from Pixel setup)</li>
+            <li>Product catalogue connected via Commerce Manager</li>
+            <li>Website domain verified in Meta Business Manager</li>
+          </ul>
+          <div class="links">
+            <a class="link-btn" href="https://business.facebook.com/commerce" target="_blank">Meta Commerce Manager →</a>
+            <a class="link-btn" href="https://help.instagram.com/1199309036786786" target="_blank">Instagram Shopping setup guide →</a>
+          </div>
+        </div>
+      </div>
+      <div class="done-box"><p><strong>Done when:</strong> You can tag a product in an Instagram post and see the price + product name appear as a tappable tag. The Shopping tab is visible on the @bloomeyewear_studio profile.</p></div>
+    </div>
+  </div>
+
+  <!-- TASK 12 -->
+  <div class="task" id="t12" data-phase="week1" onclick="toggleTask(event,'t12')">
+    <div class="task-top">
+      <div class="ck-box"><span class="ck-icon">✓</span></div>
+      <div class="task-body">
+        <div class="task-title">Set up Klaviyo welcome email series (3 emails over 7 days)</div>
+        <div class="task-sub">Email 1: deliver 10% code. Email 2 (day 3): brand story. Email 3 (day 7): face shape guide + products.</div>
+      </div>
+      <div class="task-meta">
+        <span class="pri pri-r">Critical</span>
+        <span class="time">~2 hrs</span>
+        <span class="expand-icon">▾</span>
+      </div>
+    </div>
+    <div class="detail">
+      <div class="detail-grid">
+        <div class="detail-box steps">
+          <h4>Setup steps</h4>
+          <ol>
+            <li><div class="step-n">1</div><span>Go to <strong>klaviyo.com</strong> → create a free account (free up to 500 contacts)</span></li>
+            <li><div class="step-n">2</div><span>Connect Klaviyo to Shopify: Klaviyo dashboard → <strong>Integrations → Shopify</strong> → follow connection steps</span></li>
+            <li><div class="step-n">3</div><span>Klaviyo dashboard → <strong>Flows → Create Flow → Build your own</strong></span></li>
+            <li><div class="step-n">4</div><span>Set trigger: <strong>"Someone subscribes to a list"</strong> → select your email signup list</span></li>
+            <li><div class="step-n">5</div><span>Add Email 1 (immediate), Email 2 (delay 3 days), Email 3 (delay 7 days from start)</span></li>
+            <li><div class="step-n">6</div><span>Write and design each email using Klaviyo's drag-and-drop builder</span></li>
+            <li><div class="step-n">7</div><span>Test by adding yourself as a subscriber — check all 3 emails arrive correctly and look good on mobile</span></li>
+          </ol>
+        </div>
+        <div class="detail-box">
+          <h4>What each email should contain</h4>
+          <ul>
+            <li><strong>Email 1 — immediate:</strong> Subject: "Your 10% off is inside, [name]" / Deliver discount code in first line / Show 3 bestselling frames with direct buy links / Keep short</li>
+            <li style="margin-top:6px"><strong>Email 2 — day 3:</strong> Subject: "The story behind Bloom" / Who is Bloom? / What is a Perennial Woman? / No product push / Pure brand connection email</li>
+            <li style="margin-top:6px"><strong>Email 3 — day 7:</strong> Subject: "Which Bloom frame was made for your face?" / Link to face shape guide / Show specific frames for each face shape / Direct buy links</li>
+          </ul>
+          <div class="links">
+            <a class="link-btn" href="https://klaviyo.com" target="_blank">Klaviyo →</a>
+            <a class="link-btn" href="https://help.klaviyo.com/hc/en-us/articles/115002779471" target="_blank">Klaviyo welcome flow guide →</a>
+          </div>
+        </div>
+      </div>
+      <div class="done-box"><p><strong>Done when:</strong> All 3 emails are live in Klaviyo, tested, and confirmed to arrive on mobile. Trigger is connected to the Bloom email signup form. The 10% discount code in Email 1 works at checkout.</p></div>
+    </div>
+  </div>
+
+  <!-- TASK 13 -->
+  <div class="task" id="t13" data-phase="week1" onclick="toggleTask(event,'t13')">
+    <div class="task-top">
+      <div class="ck-box"><span class="ck-icon">✓</span></div>
+      <div class="task-body">
+        <div class="task-title">Set up abandoned cart email sequence (3 emails)</div>
+        <div class="task-sub">1hr nudge → 24hr objection handler → 72hr offer to close. Recovers 5–15% of abandoned carts automatically.</div>
+      </div>
+      <div class="task-meta">
+        <span class="pri pri-r">Critical</span>
+        <span class="time">~1.5 hrs</span>
+        <span class="expand-icon">▾</span>
+      </div>
+    </div>
+    <div class="detail">
+      <div class="detail-grid">
+        <div class="detail-box steps">
+          <h4>Setup steps in Klaviyo</h4>
+          <ol>
+            <li><div class="step-n">1</div><span>Klaviyo dashboard → <strong>Flows → Create Flow</strong> → search for <strong>"Abandoned Cart"</strong> in templates — Klaviyo has a pre-built template to start from</span></li>
+            <li><div class="step-n">2</div><span>Set trigger: <strong>"Checkout started"</strong> Shopify event (Klaviyo connects this automatically once Shopify integration is live)</span></li>
+            <li><div class="step-n">3</div><span>Add flow filter: <strong>"Placed Order zero times since starting flow"</strong> — ensures you don't email people who completed their purchase</span></li>
+            <li><div class="step-n">4</div><span>Add Email 1 (delay 1 hour), Email 2 (delay 24 hours), Email 3 (delay 72 hours)</span></li>
+            <li><div class="step-n">5</div><span>Use Klaviyo's dynamic product block to automatically pull in the exact product(s) from the abandoned cart</span></li>
+          </ol>
+        </div>
+        <div class="detail-box">
+          <h4>What each email does</h4>
+          <ul>
+            <li><strong>Email 1 — 1 hour: The nudge</strong><br>Subject: "You left something beautiful behind" / Show exact abandoned frame / Single CTA back to cart / No discount — just the reminder</li>
+            <li style="margin-top:6px"><strong>Email 2 — 24 hours: The objection handler</strong><br>Subject: "Worried about fit?" / Link to face shape guide / Show 2–3 reviews / Reinforce free returns / Don't push — reassure</li>
+            <li style="margin-top:6px"><strong>Email 3 — 72 hours: The closer</strong><br>Subject: "Last chance — your frames are waiting" / Offer 5–10% off or free express shipping / Make the offer time-limited (expires 24 hours)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="done-box"><p><strong>Done when:</strong> All 3 cart emails are live in Klaviyo. Test by adding a product to cart on your store, starting checkout with your email address, then abandoning. Confirm all 3 emails arrive at correct timing with the right product shown.</p></div>
+    </div>
+  </div>
+
+  <!-- TASK 14 -->
+  <div class="task" id="t14" data-phase="week1" onclick="toggleTask(event,'t14')">
+    <div class="task-top">
+      <div class="ck-box"><span class="ck-icon">✓</span></div>
+      <div class="task-body">
+        <div class="task-title">UTM tag every link you share</div>
+        <div class="task-sub">Instagram bio, all emails, all ads. Without UTMs, GA4 can't tell you what's driving sales.</div>
+      </div>
+      <div class="task-meta">
+        <span class="pri pri-a">This week</span>
+        <span class="time">~30 min to set up</span>
+        <span class="expand-icon">▾</span>
+      </div>
+    </div>
+    <div class="detail">
+      <div class="detail-grid">
+        <div class="detail-box steps">
+          <h4>How to build a UTM link</h4>
+          <ol>
+            <li><div class="step-n">1</div><span>Go to <strong>Google Campaign URL Builder</strong> (link below)</span></li>
+            <li><div class="step-n">2</div><span>Enter your destination URL (e.g. bloomeyewear.com)</span></li>
+            <li><div class="step-n">3</div><span>Fill in: <strong>Source</strong> (where the traffic comes from), <strong>Medium</strong> (the channel type), <strong>Campaign</strong> (which campaign/push)</span></li>
+            <li><div class="step-n">4</div><span>Copy the generated URL and use it everywhere</span></li>
+          </ol>
+          <h4 style="margin-top:12px">UTM examples for Bloom</h4>
+          <ul>
+            <li>Instagram bio link: source=instagram, medium=social, campaign=bio_link</li>
+            <li>Welcome email link: source=klaviyo, medium=email, campaign=welcome_series</li>
+            <li>Meta ad: source=meta, medium=paid_social, campaign=asc_prospecting</li>
+            <li>Influencer post link: source=instagram, medium=influencer, campaign=sarah_april26</li>
+          </ul>
+        </div>
+        <div class="detail-box">
+          <h4>Why UTMs matter</h4>
+          <p>Without UTMs, GA4 reports all these sessions as "direct" traffic — meaning you have no idea if a sale came from Instagram, an email, or an influencer post. You'd be spending on ads and posting content with no way to prove what's working. UTMs take 2 minutes per link and give you complete attribution visibility.</p>
+          <h4 style="margin-top:10px">Instagram bio tip</h4>
+          <p>Use a link-in-bio tool like <strong>Linktree</strong> or <strong>Later's Link in Bio</strong> so you can have multiple tagged links (to Sun collection, Optical collection, Face Shape Guide etc.) and swap them without changing your bio. Each link gets its own UTM.</p>
+          <div class="links">
+            <a class="link-btn" href="https://ga-dev-tools.google/campaign-url-builder/" target="_blank">Google UTM Builder →</a>
+            <a class="link-btn" href="https://linktr.ee" target="_blank">Linktree →</a>
+          </div>
+        </div>
+      </div>
+      <div class="done-box"><p><strong>Done when:</strong> Instagram bio link has UTM parameters. Welcome email and abandoned cart email links all have UTMs. When you check GA4 → Reports → Acquisition → Traffic Acquisition, you see "instagram / social" as a source rather than "(direct)".</p></div>
+    </div>
+  </div>
+
+  <!-- TASK 15 -->
+  <div class="task" id="t15" data-phase="week1" onclick="toggleTask(event,'t15')">
+    <div class="task-top">
+      <div class="ck-box"><span class="ck-icon">✓</span></div>
+      <div class="task-body">
+        <div class="task-title">Outreach to 5–10 micro-influencers (gift-first DM)</div>
+        <div class="task-sub">Women 40–60, 5K–50K followers, 3%+ engagement. Search #styleafter40 #australianwomenstyle.</div>
+      </div>
+      <div class="task-meta">
+        <span class="pri pri-a">This week</span>
+        <span class="time">~1 hr research + DMs</span>
+        <span class="expand-icon">▾</span>
+      </div>
+    </div>
+    <div class="detail">
+      <div class="detail-grid">
+        <div class="detail-box steps">
+          <h4>How to find them</h4>
+          <ol>
+            <li><div class="step-n">1</div><span>On Instagram, search these hashtags: <strong>#styleafter40 #womenover50fashion #australianwomenstyle #womenover40australia #agelessstyle #graceandgrit</strong></span></li>
+            <li><div class="step-n">2</div><span>Look at top posts — click on the account. Check: follower count (5K–50K), what they post about (lifestyle, fashion, travel), engagement rate (comments + likes ÷ followers — aim for 3%+)</span></li>
+            <li><div class="step-n">3</div><span>Also check: <strong>Collabstr.com</strong> and <strong>Later's Creator Marketplace</strong> — both let you filter by AU location, age, and niche</span></li>
+            <li><div class="step-n">4</div><span>Build a shortlist of 15–20 potential creators, then DM your top 10</span></li>
+          </ol>
+          <h4 style="margin-top:12px">The DM script</h4>
+          <p style="font-size:12px;background:var(--gray-100);padding:10px;border-radius:6px;margin-top:6px;line-height:1.7">"Hi [name], we're Bloom Eyewear — a new Australian women's eyewear brand. We think your style is exactly what Bloom is about. We'd love to gift you a pair — no strings attached, we just think you'd love them. If you do, we'd be thrilled if you shared your honest thoughts. 🌸"</p>
+        </div>
+        <div class="detail-box">
+          <h4>What to look for in their profile</h4>
+          <ul>
+            <li>Real women aged 40–60 who look and dress like your target customer</li>
+            <li>Posts that feel authentic, not overly commercial</li>
+            <li>Comments from engaged followers (not just emoji responses)</li>
+            <li>Australia-based (check location tags in posts)</li>
+            <li>No other eyewear brand partnerships active</li>
+          </ul>
+          <h4 style="margin-top:10px">When they agree to a pair</h4>
+          <ul>
+            <li>Send a gift note with the frames: include brand story + hashtag #bloomeyewear</li>
+            <li>Give each creator a unique 15% discount code (e.g. SARAH15) for their followers — this tracks which creator drives actual sales</li>
+            <li>When they post, reshare immediately to Stories + download the content for potential ad creative use</li>
+          </ul>
+          <div class="links">
+            <a class="link-btn" href="https://collabstr.com" target="_blank">Collabstr →</a>
+            <a class="link-btn" href="https://later.com/link-in-bio/" target="_blank">Later Creator Marketplace →</a>
+          </div>
+        </div>
+      </div>
+      <div class="done-box"><p><strong>Done when:</strong> 10 DMs sent to relevant creators. At least 3 have responded positively. Frames are being shipped to confirmed creators. Each has a unique discount code assigned for tracking.</p></div>
+    </div>
+  </div>
+
+</div><!-- /phase 1 items -->
+
+<!-- Site-wide sub-section still in Week 1 -->
+<div class="phase-header" style="padding-top:8px">
+  <div class="phase-dot" style="background:var(--amber)"></div>
+  <span class="ph-title">Week 1 — Site-wide fixes</span>
+  <span class="ph-count" id="count-sitewide"></span>
+</div>
+<div class="phase-items">
+
+  <div class="task" id="ts1" data-phase="week1" onclick="toggleTask(event,'ts1')">
+    <div class="task-top">
+      <div class="ck-box"><span class="ck-icon">✓</span></div>
+      <div class="task-body">
+        <div class="task-title">Link the "Seamless &amp; secure returns" homepage icon to the returns page</div>
+        <div class="task-sub">The trust icon says "Change your mind? No worries, just email us." with no link. Buyers looking for the full policy can't find it.</div>
+      </div>
+      <div class="task-meta"><span class="pri pri-a">This week</span><span class="time">~5 min</span><span class="expand-icon">▾</span></div>
+    </div>
+    <div class="detail">
+      <div class="detail-grid">
+        <div class="detail-box steps">
+          <h4>How to fix</h4>
+          <ol>
+            <li><div class="step-n">1</div><span>Shopify Admin → Online Store → Themes → Customize</span></li>
+            <li><div class="step-n">2</div><span>Navigate to the homepage trust icon section</span></li>
+            <li><div class="step-n">3</div><span>Find the returns icon block → add a link to <strong>/pages/returns</strong> on the icon or the heading text</span></li>
+            <li><div class="step-n">4</div><span>Save and test — clicking the icon should open the returns page</span></li>
+          </ol>
+        </div>
+        <div class="detail-box">
+          <h4>Why it matters</h4>
+          <p>The trust icon section is designed to remove purchase hesitation — but if buyers can't easily access the actual policy, the icon does half its job. A pre-purchase buyer worried about returns will click it expecting to read the policy. A dead-end means they keep worrying.</p>
+        </div>
+      </div>
+      <div class="done-box"><p><strong>Done when:</strong> Clicking the returns trust icon on the homepage takes you to the full returns policy page.</p></div>
+    </div>
+  </div>
+
+  <div class="task" id="ts2" data-phase="week1" onclick="toggleTask(event,'ts2')">
+    <div class="task-top">
+      <div class="ck-box"><span class="ck-icon">✓</span></div>
+      <div class="task-body">
+        <div class="task-title">Create a dedicated Shipping page and add it to the footer</div>
+        <div class="task-sub">The FAQ mentions 5–7 business days but there's no dedicated shipping page. Australian buyers want carriers, tracking, and timelines.</div>
+      </div>
+      <div class="task-meta"><span class="pri pri-a">This week</span><span class="time">~30 min</span><span class="expand-icon">▾</span></div>
+    </div>
+    <div class="detail">
+      <div class="detail-grid">
+        <div class="detail-box steps">
+          <h4>How to create the page</h4>
+          <ol>
+            <li><div class="step-n">1</div><span>Shopify Admin → Online Store → <strong>Pages → Add page</strong></span></li>
+            <li><div class="step-n">2</div><span>Title: "Shipping Information" · URL handle: /pages/shipping</span></li>
+            <li><div class="step-n">3</div><span>Write the content (see suggested content right) and save</span></li>
+            <li><div class="step-n">4</div><span>Add to footer: Online Store → Themes → Customize → Footer section → add "Shipping" link pointing to /pages/shipping</span></li>
+          </ol>
+        </div>
+        <div class="detail-box">
+          <h4>Suggested content to include</h4>
+          <ul>
+            <li>Processing time: 1–2 business days before dispatch</li>
+            <li>Australia: express shipping, 3–5 business days (carrier name, e.g. Australia Post Express)</li>
+            <li>International: estimated delivery time + any zones</li>
+            <li>Tracking: "You'll receive a tracking email once your order ships"</li>
+            <li>Free shipping threshold (if applicable)</li>
+            <li>Link to returns page at the bottom</li>
+          </ul>
+        </div>
+      </div>
+      <div class="done-box"><p><strong>Done when:</strong> A shipping page exists at /pages/shipping with accurate information. A "Shipping" link in the footer is visible and working.</p></div>
+    </div>
+  </div>
+
+  <div class="task" id="ts3" data-phase="week1" onclick="toggleTask(event,'ts3')">
+    <div class="task-top">
+      <div class="ck-box"><span class="ck-icon">✓</span></div>
+      <div class="task-body">
+        <div class="task-title">Add a "Help" link to the main navigation</div>
+        <div class="task-sub">Returns and FAQ are footer-only. Many mobile buyers never scroll to the footer. A top-nav Help link reduces pre-purchase hesitation for $300+ buyers.</div>
+      </div>
+      <div class="task-meta"><span class="pri pri-a">This week</span><span class="time">~10 min</span><span class="expand-icon">▾</span></div>
+    </div>
+    <div class="detail">
+      <div class="detail-grid">
+        <div class="detail-box steps">
+          <h4>How to add to navigation</h4>
+          <ol>
+            <li><div class="step-n">1</div><span>Shopify Admin → Online Store → <strong>Navigation</strong></span></li>
+            <li><div class="step-n">2</div><span>Click on your <strong>Main menu</strong></span></li>
+            <li><div class="step-n">3</div><span>Click <strong>Add menu item</strong> → Name: "Help" → Link: /pages/faq (or create a combined help page linking to FAQ, shipping, and returns)</span></li>
+            <li><div class="step-n">4</div><span>Save menu → verify "Help" appears in the top navigation on mobile and desktop</span></li>
+          </ol>
+        </div>
+        <div class="detail-box">
+          <h4>Why mobile navigation matters</h4>
+          <p>The majority of Instagram traffic lands on your site via mobile. Mobile users rarely scroll to footers — navigation is their primary way to move around the site. A first-time buyer at $300+ who wants to check returns or shipping before buying needs to find that information easily. Making them hunt for it is losing you sales.</p>
+          <h4 style="margin-top:10px">Alternative</h4>
+          <p>Create a single <strong>/pages/help</strong> page that combines FAQ, shipping, and returns links — and link the nav "Help" item to that. Cleaner than three separate nav items.</p>
+        </div>
+      </div>
+      <div class="done-box"><p><strong>Done when:</strong> A "Help" link is visible in the main navigation on both desktop and mobile, and it takes you to FAQ/shipping/returns information.</p></div>
+    </div>
+  </div>
+
+</div><!-- /site-wide items -->
+
+
+<!-- ===== PHASE 2: WEEK 2 ===== -->
+<div class="phase-header">
+  <div class="phase-dot" style="background:var(--amber)"></div>
+  <span class="ph-title">Week 2 — Launch (after tracking is verified)</span>
+  <span class="ph-count" id="count-week2"></span>
+</div>
+<div class="phase-items">
+
+  <div class="task" id="t16" data-phase="week2" onclick="toggleTask(event,'t16')">
+    <div class="task-top">
+      <div class="ck-box"><span class="ck-icon">✓</span></div>
+      <div class="task-body">
+        <div class="task-title">Shoot 3+ vertical (9:16) video creatives before launching any ads</div>
+        <div class="task-sub">Home try-on demo, lifestyle confidence piece, UGC-style review. iPhone quality preferred — authentic beats polished.</div>
+      </div>
+      <div class="task-meta"><span class="pri pri-a">Before ads go live</span><span class="time">~2 hrs shoot</span><span class="expand-icon">▾</span></div>
+    </div>
+    <div class="detail">
+      <div class="detail-grid">
+        <div class="detail-box">
+          <h4>3 videos to shoot</h4>
+          <ul>
+            <li><strong>Video 1 — Home try-on demo (30s):</strong> Unbox → try on 3 frames → react. Authentic, unscripted. "These are the ones." Addresses the #1 eyewear purchase barrier.</li>
+            <li style="margin-top:8px"><strong>Video 2 — Lifestyle confidence (15s):</strong> Woman 45–60, outdoors, frames on, looks directly at camera. Hook text overlay in first 2 seconds: "Wait — try these." No dialogue needed.</li>
+            <li style="margin-top:8px"><strong>Video 3 — UGC review (20s):</strong> Woman talks to camera: "I'm 52 and I haven't felt this confident in sunglasses in years." Completely unscripted feeling. Highest-trust ad format.</li>
+          </ul>
+        </div>
+        <div class="detail-box steps">
+          <h4>Filming tips for iPhone</h4>
+          <ol>
+            <li><div class="step-n">1</div><span>Film in <strong>portrait mode (9:16)</strong> — hold phone vertical. This is mandatory for Meta ads in 2026 — 90% of Meta inventory is vertical.</span></li>
+            <li><div class="step-n">2</div><span><strong>Natural light</strong> near a window — no ring lights. Ring lights look "content creator" and reduce authenticity.</span></li>
+            <li><div class="step-n">3</div><span>No fancy editing — a cut between clips and a text overlay is enough. Use CapCut (free) for basic editing if needed.</span></li>
+            <li><div class="step-n">4</div><span>Hook in the <strong>first 2 seconds</strong> is everything — the first frame must make someone stop scrolling.</span></li>
+          </ol>
+          <div class="links"><a class="link-btn" href="https://www.capcut.com" target="_blank">CapCut (free video editor) →</a></div>
+        </div>
+      </div>
+      <div class="done-box"><p><strong>Done when:</strong> 3+ videos shot, exported in 9:16 format, trimmed to 15–30 seconds. Saved and ready to upload to Meta Ads Manager.</p></div>
+    </div>
+  </div>
+
+  <div class="task" id="t17" data-phase="week2" onclick="toggleTask(event,'t17')">
+    <div class="task-top">
+      <div class="ck-box"><span class="ck-icon">✓</span></div>
+      <div class="task-body">
+        <div class="task-title">Launch one Advantage+ Shopping Campaign (ASC)</div>
+        <div class="task-sub">$50/day, broad targeting, 5–6 creative concepts. Do not touch for 7 days. One campaign — not 5 ad sets.</div>
+      </div>
+      <div class="task-meta"><span class="pri pri-a">Week 2</span><span class="time">~1 hr setup</span><span class="expand-icon">▾</span></div>
+    </div>
+    <div class="detail">
+      <div class="detail-grid">
+        <div class="detail-box steps">
+          <h4>Setup in Meta Ads Manager</h4>
+          <ol>
+            <li><div class="step-n">1</div><span>Go to <strong>Meta Ads Manager</strong> → click <strong>Create</strong></span></li>
+            <li><div class="step-n">2</div><span>Select objective: <strong>Sales</strong> → Meta will offer you <strong>Advantage+ Shopping Campaign</strong> as the default → accept it</span></li>
+            <li><div class="step-n">3</div><span><strong>Targeting:</strong> Country: Australia · Gender: Women · Age: 35–65 · No interest layers · Leave Advantage+ Audience ON</span></li>
+            <li><div class="step-n">4</div><span><strong>Budget:</strong> $50 AUD/day · Campaign Budget Optimisation: ON · Let Meta distribute budget across creatives</span></li>
+            <li><div class="step-n">5</div><span><strong>Upload all 5–6 creatives</strong> at once (your 3 videos + 2–3 static images). Different hooks, different formats — each must be conceptually distinct</span></li>
+            <li><div class="step-n">6</div><span>Set conversion event: <strong>Purchase</strong> (your Pixel must be tracking this for it to appear)</span></li>
+            <li><div class="step-n">7</div><span>Publish → <strong>do not edit for 7 days minimum</strong></span></li>
+          </ol>
+        </div>
+        <div class="detail-box">
+          <h4>The 7-day rule — critical</h4>
+          <p>Every time you edit a campaign (change budget, swap creative, adjust targeting), Meta resets the learning phase. During the learning phase, CPAs are 20–50% higher than post-learning. Discipline = let it run without touching it for 7 days. Only check the numbers — don't change anything.</p>
+          <h4 style="margin-top:10px">What to check at day 7</h4>
+          <ul>
+            <li>Which creative has the best CTR (click-through rate)?</li>
+            <li>Which creative has the lowest cost per link click?</li>
+            <li>Has the campaign exited the learning phase? (Shown in Ads Manager)</li>
+            <li>Only then: pause the 1–2 lowest-performing creatives and add new ones</li>
+          </ul>
+          <div class="links">
+            <a class="link-btn" href="https://adsmanager.facebook.com" target="_blank">Meta Ads Manager →</a>
+          </div>
+        </div>
+      </div>
+      <div class="done-box"><p><strong>Done when:</strong> Campaign is live in Meta Ads Manager, showing as "Active." At least 5 creative assets are uploaded. Budget is set to $50/day. You have a reminder set for day 7 to review (not edit) performance.</p></div>
+      <div class="warn-box"><p><strong>Remember:</strong> Week 1–2 ROAS will be low (0–1×). This is completely normal — the pixel is learning. Do not judge performance or make changes before day 7.</p></div>
+    </div>
+  </div>
+
+  <div class="task" id="t18" data-phase="week2" onclick="toggleTask(event,'t18')">
+    <div class="task-top">
+      <div class="ck-box"><span class="ck-icon">✓</span></div>
+      <div class="task-body">
+        <div class="task-title">Post first week of organic Instagram content (correct format mix)</div>
+        <div class="task-sub">1 carousel + 1 Reel + 1 lifestyle image + 1 brand story post. Daily Stories throughout the week.</div>
+      </div>
+      <div class="task-meta"><span class="pri pri-a">Week 2</span><span class="time">~3 hrs content creation</span><span class="expand-icon">▾</span></div>
+    </div>
+    <div class="detail">
+      <div class="detail-grid">
+        <div class="detail-box">
+          <h4>The 4 posts to create</h4>
+          <ul>
+            <li><strong>Mon — Carousel:</strong> "Which Bloom frame suits your face?" — Hook slide: striking question / Slides 2–5: one face shape each + frame recommendation / Final slide: "Save this for when you're shopping" CTA</li>
+            <li style="margin-top:8px"><strong>Wed — Reel:</strong> Repurpose one of your ad video shoots as organic content. Add caption: natural language + "women's sunglasses Australia" woven in naturally. Use trending audio.</li>
+            <li style="margin-top:8px"><strong>Fri — Lifestyle image:</strong> Beautiful single shot — product on a surface or in a natural setting. Simple, aspirational.</li>
+            <li style="margin-top:8px"><strong>Sun — Brand story:</strong> Tell the Bloom story. Who is a Perennial Woman? Why does this brand exist? Text-based or simple flat-lay image.</li>
+          </ul>
+        </div>
+        <div class="detail-box">
+          <h4>Caption SEO — do this from day 1</h4>
+          <p>Instagram's 2026 AI-powered search indexes captions. Include these phrases naturally in your first 2 caption lines:</p>
+          <ul style="margin-top:6px">
+            <li>"women's sunglasses Australia"</li>
+            <li>"optical frames for women over 40"</li>
+            <li>"eyewear for women Australia"</li>
+            <li>"style over 40" or "ageless style"</li>
+          </ul>
+          <h4 style="margin-top:10px">Hashtags — 5–8 only</h4>
+          <p>#bloomeyewear #womenover40style #styleafter40 #australianeyewear #eyewearaustralia #agelessstyle</p>
+          <h4 style="margin-top:10px">Best posting times (AU, women 40–60)</h4>
+          <p>7–9am, 12–1pm, 7–9pm · Respond to every comment within 2 hours of posting (algorithm signal)</p>
+        </div>
+      </div>
+      <div class="done-box"><p><strong>Done when:</strong> 4 posts published across the week, all with UTM-tagged bio links, SEO-optimised captions, and product tags (once Instagram Shopping is live). Daily Stories posted throughout the week.</p></div>
+    </div>
+  </div>
+
+  <div class="task" id="t19" data-phase="week2" onclick="toggleTask(event,'t19')">
+    <div class="task-top">
+      <div class="ck-box"><span class="ck-icon">✓</span></div>
+      <div class="task-body">
+        <div class="task-title">Enable creator product tagging for micro-influencers</div>
+        <div class="task-sub">Brief influencers to tag your products in their posts — turns every influencer post into a free shoppable ad.</div>
+      </div>
+      <div class="task-meta"><span class="pri pri-a">Week 2</span><span class="time">~15 min setup</span><span class="expand-icon">▾</span></div>
+    </div>
+    <div class="detail">
+      <div class="detail-grid">
+        <div class="detail-box steps">
+          <h4>How to enable it</h4>
+          <ol>
+            <li><div class="step-n">1</div><span>Instagram Shopping must be approved first (Task 11)</span></li>
+            <li><div class="step-n">2</div><span>In <strong>Meta Commerce Manager</strong> → Settings → <strong>Creator tagging</strong> → turn on "Allow creators to tag your products"</span></li>
+            <li><div class="step-n">3</div><span>Send your influencers a message: "When you post about Bloom, you can tag our products directly — tap 'Tag Products' before publishing and search for Bloom Eyewear. This lets your followers tap through directly to buy."</span></li>
+          </ol>
+        </div>
+        <div class="detail-box">
+          <h4>Why this is powerful</h4>
+          <p>When an influencer tags your product, their followers see the product name and price as a tappable overlay on the image. One tap opens the product in Instagram's in-app browser — they never leave the app. This is the shortest path from influencer post to purchase, and it's completely free to enable.</p>
+        </div>
+      </div>
+      <div class="done-box"><p><strong>Done when:</strong> Creator tagging is enabled in Commerce Manager. All active micro-influencers have been briefed on how to tag products in their posts.</p></div>
+    </div>
+  </div>
+
+</div><!-- /phase 2 items -->
+
+
+<!-- ===== PHASE 3: MONTH 2 ===== -->
+<div class="phase-header">
+  <div class="phase-dot" style="background:var(--teal)"></div>
+  <span class="ph-title">Month 2 — Scale (once first sales are coming in)</span>
+  <span class="ph-count" id="count-month2"></span>
+</div>
+<div class="phase-items">
+
+  <div class="task" id="t20" data-phase="month2" onclick="toggleTask(event,'t20')">
+    <div class="task-top">
+      <div class="ck-box"><span class="ck-icon">✓</span></div>
+      <div class="task-body">
+        <div class="task-title">On-face model photos — every colour variant, every frame</div>
+        <div class="task-sub">One shoot, 40+ model, natural light. Front + ¾ angle per colourway. Lifts conversion 30–50%.</div>
+      </div>
+      <div class="task-meta"><span class="pri pri-b">Month 2</span><span class="time">Half day shoot</span><span class="expand-icon">▾</span></div>
+    </div>
+    <div class="detail">
+      <div class="detail-grid">
+        <div class="detail-box">
+          <h4>What to capture per colourway</h4>
+          <ul>
+            <li>Front-facing portrait — frames on, looking directly at camera</li>
+            <li>¾ angle — shows how the frame sits on the side of the face</li>
+            <li>Close-up of the temple/hinge detail — signals craftsmanship at $349</li>
+            <li>One lifestyle shot — natural setting, woman engaged in activity (reading, outside, coffee)</li>
+          </ul>
+          <h4 style="margin-top:10px">Model criteria</h4>
+          <ul>
+            <li>Visibly aged 40–60 — your target customer needs to see themselves</li>
+            <li>Authentic and warm, not model-stiff</li>
+            <li>Ideally different women across the range if budget allows</li>
+          </ul>
+        </div>
+        <div class="detail-box">
+          <h4>Photography setup (budget-friendly)</h4>
+          <ul>
+            <li>iPhone 14+ or a DSLR both work fine</li>
+            <li>Natural light near a large window or outdoors on an overcast day (no harsh shadows)</li>
+            <li>Simple backgrounds: white wall, garden, café, neutral interior</li>
+            <li>Light editing in Lightroom Mobile (free) for consistency across shots</li>
+          </ul>
+          <h4 style="margin-top:10px">After the shoot</h4>
+          <ul>
+            <li>Upload to each product variant in Shopify — add the model photos for each colour</li>
+            <li>Keep the best shots for Instagram Reels and carousel content</li>
+            <li>Use the lifestyle shots as ad creative (repurpose into 9:16 crops)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="done-box"><p><strong>Done when:</strong> Every product page has at least one on-face model image per colour variant. Photos are visible in the product gallery when each colour swatch is selected.</p></div>
+    </div>
+  </div>
+
+  <div class="task" id="t21" data-phase="month2" onclick="toggleTask(event,'t21')">
+    <div class="task-top">
+      <div class="ck-box"><span class="ck-icon">✓</span></div>
+      <div class="task-body">
+        <div class="task-title">Launch Meta retargeting campaign</div>
+        <div class="task-sub">Target website visitors who didn't buy. Budget = 20–30% of prospecting spend. Highest-ROAS campaign.</div>
+      </div>
+      <div class="task-meta"><span class="pri pri-b">Month 2</span><span class="time">~1 hr setup</span><span class="expand-icon">▾</span></div>
+    </div>
+    <div class="detail">
+      <div class="detail-grid">
+        <div class="detail-box steps">
+          <h4>Setup steps</h4>
+          <ol>
+            <li><div class="step-n">1</div><span>Meta Ads Manager → <strong>Audiences</strong> → Create Audience → <strong>Custom Audience → Website</strong></span></li>
+            <li><div class="step-n">2</div><span>Create audience: "All website visitors in last 30 days — exclude people who purchased"</span></li>
+            <li><div class="step-n">3</div><span>Create a new <strong>Sales campaign</strong> (standard, not ASC) → target this custom audience</span></li>
+            <li><div class="step-n">4</div><span>Use your best-performing UGC creative + your social proof carousel (reviews + offer)</span></li>
+            <li><div class="step-n">5</div><span>Budget: 20–30% of your prospecting daily budget (so if ASC is $50/day, retargeting is $10–15/day)</span></li>
+          </ol>
+        </div>
+        <div class="detail-box">
+          <h4>Why retargeting converts better</h4>
+          <p>Retargeting targets people who already know Bloom — they've visited the site, looked at products, maybe added to cart. They're warm. Cold audiences (prospecting) need to be convinced Bloom exists and is worth considering. Warm audiences just need the final nudge. Typical ROAS on retargeting: 3–8× vs 1–2× for cold prospecting in early months.</p>
+          <h4 style="margin-top:10px">Best creatives for retargeting</h4>
+          <ul>
+            <li>Screenshot of a glowing review: "⭐⭐⭐⭐⭐ — Sarah, 54, Sydney"</li>
+            <li>The specific product they viewed (dynamic product ad)</li>
+            <li>Free returns + time-limited offer</li>
+          </ul>
+        </div>
+      </div>
+      <div class="done-box"><p><strong>Done when:</strong> Retargeting campaign is live targeting AU website visitors from the last 30 days. At least 3 creative variants are running. Pixel audience has enough people to target (needs 100+ website visitors minimum).</p></div>
+    </div>
+  </div>
+
+  <div class="task" id="t22" data-phase="month2" onclick="toggleTask(event,'t22')">
+    <div class="task-top">
+      <div class="ck-box"><span class="ck-icon">✓</span></div>
+      <div class="task-body">
+        <div class="task-title">Install virtual try-on (Fittingbox or Zakeke)</div>
+        <div class="task-sub">$50–150/month Shopify app. 42% conversion lift. Pays for itself with 1–2 extra sales per month.</div>
+      </div>
+      <div class="task-meta"><span class="pri pri-b">Month 2</span><span class="time">~1 hr install</span><span class="expand-icon">▾</span></div>
+    </div>
+    <div class="detail">
+      <div class="detail-grid">
+        <div class="detail-box">
+          <h4>Options to evaluate</h4>
+          <ul>
+            <li><strong>Fittingbox</strong> — industry leader, used by major brands. Best AR accuracy. Requires frame digitisation (they scan your frames). More setup but best result.</li>
+            <li style="margin-top:6px"><strong>Zakeke</strong> — Shopify-native, easier setup, lower price point (~$49/month). Good for getting started quickly without frame digitisation.</li>
+            <li style="margin-top:6px"><strong>Auglio</strong> — specialist eyewear AR, competitive pricing, Shopify compatible.</li>
+          </ul>
+          <p style="margin-top:8px;font-size:12px">Start with Zakeke's free trial to get something live quickly. Upgrade to Fittingbox once revenue supports it.</p>
+        </div>
+        <div class="detail-box">
+          <h4>The business case</h4>
+          <p>At $299–$349 per frame, one extra sale per month covers the tool cost. Industry data: virtual try-on users convert at 42% higher rates than non-users. 69% of buyers say it increases their purchase confidence. It also reduces returns — buyers who see themselves in the frames have fewer "it didn't look like I expected" returns.</p>
+          <div class="links">
+            <a class="link-btn" href="https://apps.shopify.com/zakeke" target="_blank">Zakeke on Shopify →</a>
+            <a class="link-btn" href="https://www.fittingbox.com" target="_blank">Fittingbox →</a>
+            <a class="link-btn" href="https://auglio.com" target="_blank">Auglio →</a>
+          </div>
+        </div>
+      </div>
+      <div class="done-box"><p><strong>Done when:</strong> Virtual try-on button is live and working on at least one product page. Test it yourself — camera should open, frames should overlay on your face. Expand to all products once confirmed working.</p></div>
+    </div>
+  </div>
+
+  <div class="task" id="t23" data-phase="month2" onclick="toggleTask(event,'t23')">
+    <div class="task-top">
+      <div class="ck-box"><span class="ck-icon">✓</span></div>
+      <div class="task-body">
+        <div class="task-title">Add AfterPay / Zip to checkout</div>
+        <div class="task-sub">BNPL lifts conversion 20–30% for considered purchases like $299–$349 eyewear with Australian women 40–60.</div>
+      </div>
+      <div class="task-meta"><span class="pri pri-b">Month 2</span><span class="time">~30 min</span><span class="expand-icon">▾</span></div>
+    </div>
+    <div class="detail">
+      <div class="detail-grid">
+        <div class="detail-box steps">
+          <h4>How to add AfterPay to Shopify</h4>
+          <ol>
+            <li><div class="step-n">1</div><span>Shopify Admin → <strong>Settings → Payments</strong></span></li>
+            <li><div class="step-n">2</div><span>Under "Alternative payment methods" → click <strong>Add payment methods</strong></span></li>
+            <li><div class="step-n">3</div><span>Search <strong>Afterpay</strong> → click Activate → follow their onboarding (they'll verify your business)</span></li>
+            <li><div class="step-n">4</div><span>Also add <strong>Zip Pay</strong> via the same process for wider coverage</span></li>
+            <li><div class="step-n">5</div><span>Once active, AfterPay messaging appears automatically on product pages and checkout ("4 payments of $74.75")</span></li>
+          </ol>
+        </div>
+        <div class="detail-box">
+          <h4>Why this matters for Bloom's audience</h4>
+          <p>Australian women 40–60 are very comfortable with AfterPay — it's mainstream in Australia for purchases in this price range. Seeing "4 payments of $74.75" changes the perceived commitment from $299 to $75. For a first-time buyer who likes the frames but is hesitant on the price, BNPL is often the deciding factor.</p>
+          <div class="links">
+            <a class="link-btn" href="https://www.afterpay.com/en-AU/business" target="_blank">AfterPay for business →</a>
+            <a class="link-btn" href="https://www.zip.co/au/business" target="_blank">Zip for business →</a>
+          </div>
+        </div>
+      </div>
+      <div class="done-box"><p><strong>Done when:</strong> AfterPay (and ideally Zip) are visible in the checkout. The "4 payments of $X" message appears on product pages automatically under the price.</p></div>
+    </div>
+  </div>
+
+</div><!-- /phase 3 items -->
+
+
+<!-- ===== PHASE 4: MONTH 3 ===== -->
+<div class="phase-header">
+  <div class="phase-dot" style="background:var(--blue)"></div>
+  <span class="ph-title">Month 3 — Growth engine</span>
+  <span class="ph-count" id="count-month3"></span>
+</div>
+<div class="phase-items">
+
+  <div class="task" id="t24" data-phase="month3" onclick="toggleTask(event,'t24')">
+    <div class="task-top">
+      <div class="ck-box"><span class="ck-icon">✓</span></div>
+      <div class="task-body">
+        <div class="task-title">Launch Google Shopping ads</div>
+        <div class="task-sub">Capture high-intent searches: "buy women's sunglasses Australia." Google &amp; YouTube Shopify app syncs product feed automatically.</div>
+      </div>
+      <div class="task-meta"><span class="pri pri-g">Month 3</span><span class="time">~2 hrs setup</span><span class="expand-icon">▾</span></div>
+    </div>
+    <div class="detail">
+      <div class="detail-grid">
+        <div class="detail-box steps">
+          <h4>Setup steps</h4>
+          <ol>
+            <li><div class="step-n">1</div><span>The <strong>Google &amp; YouTube Shopify app</strong> (already installed for GA4) also manages your Google Shopping feed — go to the app and connect your Google Ads account</span></li>
+            <li><div class="step-n">2</div><span>In Google Ads → <strong>New Campaign → Sales → Shopping</strong> → select your Merchant Center account (auto-populated from the Shopify app)</span></li>
+            <li><div class="step-n">3</div><span>Select <strong>Performance Max</strong> campaign type — Google's AI-powered equivalent of Meta's Advantage+ for Shopping</span></li>
+            <li><div class="step-n">4</div><span>Set budget: start at $20–30 AUD/day · Target ROAS: leave blank initially, switch to 300% (3×) once you have conversion data</span></li>
+            <li><div class="step-n">5</div><span>Add asset groups: product images, headlines, descriptions, logo — Google auto-generates ads from these</span></li>
+          </ol>
+        </div>
+        <div class="detail-box">
+          <h4>Why Google Shopping in month 3</h4>
+          <p>Google Shopping captures people actively searching — "women's sunglasses Australia", "optical frames online AU". These buyers have high purchase intent — they know they want frames and are looking for where to buy. Instagram builds awareness; Google captures demand. The two work together.</p>
+          <h4 style="margin-top:10px">Wait until month 3 because</h4>
+          <ul>
+            <li>You need purchase data in Google Ads (from GA4 integration) for the algorithm to optimise</li>
+            <li>Your product pages need the measurement and material data first (Google penalises incomplete product listings)</li>
+            <li>Instagram should be stable before adding another ad channel</li>
+          </ul>
+          <div class="links">
+            <a class="link-btn" href="https://ads.google.com" target="_blank">Google Ads →</a>
+            <a class="link-btn" href="https://merchants.google.com" target="_blank">Google Merchant Center →</a>
+          </div>
+        </div>
+      </div>
+      <div class="done-box"><p><strong>Done when:</strong> Google Merchant Center is connected to Shopify, product feed is approved (no errors), and a Performance Max campaign is live with a daily budget.</p></div>
+    </div>
+  </div>
+
+  <div class="task" id="t25" data-phase="month3" onclick="toggleTask(event,'t25')">
+    <div class="task-top">
+      <div class="ck-box"><span class="ck-icon">✓</span></div>
+      <div class="task-body">
+        <div class="task-title">Build lookalike audiences + run first Instagram giveaway</div>
+        <div class="task-sub">Lookalikes from email list (100+ subscribers) + pixel data (50+ purchases). Giveaway: follow + tag 2 friends entry.</div>
+      </div>
+      <div class="task-meta"><span class="pri pri-g">Month 3</span><span class="time">~2 hrs</span><span class="expand-icon">▾</span></div>
+    </div>
+    <div class="detail">
+      <div class="detail-grid">
+        <div class="detail-box steps">
+          <h4>Lookalike audience setup</h4>
+          <ol>
+            <li><div class="step-n">1</div><span>Meta Ads Manager → <strong>Audiences → Create Audience → Lookalike Audience</strong></span></li>
+            <li><div class="step-n">2</div><span>Source: your Customer List (export from Klaviyo, upload to Meta) OR your Pixel Purchase event audience</span></li>
+            <li><div class="step-n">3</div><span>Location: Australia · Audience size: 1% (most similar to your source)</span></li>
+            <li><div class="step-n">4</div><span>Add this lookalike audience as an additional targeting layer in a new prospecting ad set alongside your broad ASC</span></li>
+          </ol>
+          <h4 style="margin-top:12px">Giveaway mechanics</h4>
+          <ol>
+            <li><div class="step-n">1</div><span>Prize: one pair of Bloom frames (winner's choice)</span></li>
+            <li><div class="step-n">2</div><span>Entry: Follow @bloomeyewear_studio + tag 2 friends in the comments</span></li>
+            <li><div class="step-n">3</div><span>Duration: 7 days · Pick winner randomly via a comment picker tool</span></li>
+            <li><div class="step-n">4</div><span>Announce winner in Stories + a post — creates authentic engagement</span></li>
+          </ol>
+        </div>
+        <div class="detail-box">
+          <h4>Why lookalikes work</h4>
+          <p>Meta takes your best buyers (people who purchased) and finds other Australians who look behaviorally similar — same interests, similar online behaviour, similar demographics. These audiences convert better than broad targeting because they're pre-qualified by similarity to real customers.</p>
+          <h4 style="margin-top:10px">Why the giveaway helps</h4>
+          <p>Every entry is a comment, every comment boosts algorithmic reach, every tagged friend is a new person seeing Bloom who wasn't in your audience before. A well-run giveaway can generate 200–500 new followers for the cost of one pair of frames (~$299).</p>
+          <div class="links">
+            <a class="link-btn" href="https://commentpicker.com" target="_blank">Comment Picker (free winner tool) →</a>
+          </div>
+        </div>
+      </div>
+      <div class="done-box"><p><strong>Done when:</strong> Lookalike audience created in Meta and added to an ad set. Giveaway post is live with clear entry instructions. Winner is announced within 24 hours of close date.</p></div>
+    </div>
+  </div>
+
+</div><!-- /phase 4 items -->
+
+<div style="padding:0 40px 32px">
+  <div class="prog-wrap" style="background:var(--gray-100);border-radius:var(--r-sm);padding:16px 20px;border:1px solid var(--border)">
+    <div class="prog-top">
+      <span style="font-size:13px;font-weight:600;color:var(--text)" id="prog-footer-count">0 / 32 tasks complete</span>
+      <span style="font-size:12px;color:var(--text-2)" id="prog-footer-pct">0% done</span>
+    </div>
+    <div class="prog-bg" style="margin-top:8px"><div class="prog-fill" id="prog-footer-fill" style="width:0%;background:var(--teal)"></div></div>
+  </div>
+</div>
+
+</div><!-- /page -->
+
+<div class="footer-bar">
+  Bloom Eyewear · Working Checklist · April 2026 · bloomeyewear.com · @bloomeyewear_studio
+</div>
+
+<script>
+  const TOTAL = 32;
+
+  function toggleTask(e, id) {
+    if (e.target.tagName === 'A') return;
+    const task = document.getElementById(id);
+    const isOpen = task.classList.contains('open');
+    if (e.target.closest('.ck-box')) {
+      task.classList.toggle('done');
+      updateProgress();
+      return;
+    }
+    task.classList.toggle('open', !isOpen);
+  }
+
+  function updateProgress() {
+    const done = document.querySelectorAll('.task.done').length;
+    const pct = Math.round((done / TOTAL) * 100);
+    document.getElementById('prog-fill').style.width = pct + '%';
+    document.getElementById('prog-footer-fill').style.width = pct + '%';
+    document.getElementById('prog-count').textContent = done + ' / ' + TOTAL + ' complete';
+    document.getElementById('prog-pct').textContent = pct + '%';
+    document.getElementById('prog-footer-count').textContent = done + ' / ' + TOTAL + ' tasks complete';
+    document.getElementById('prog-footer-pct').textContent = pct + '% done';
+    updatePhaseCounts();
+  }
+
+  function updatePhaseCounts() {
+    ['fixtoday','week1','week2','month2','month3'].forEach(phase => {
+      const all = document.querySelectorAll('[data-phase="' + phase + '"]').length;
+      const done = document.querySelectorAll('[data-phase="' + phase + '"].done').length;
+      const el = document.getElementById('count-' + phase);
+      if (el) el.textContent = done + ' / ' + all + ' done';
+    });
+    const swAll = document.querySelectorAll('#ts1,#ts2,#ts3').length;
+    const swDone = document.querySelectorAll('#ts1.done,#ts2.done,#ts3.done').length;
+    const swEl = document.getElementById('count-sitewide');
+    if (swEl) swEl.textContent = swDone + ' / ' + swAll + ' done';
+  }
+
+  function filter(type, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.task').forEach(t => {
+      if (type === 'all') t.classList.remove('hidden');
+      else if (type === 'todo') t.classList.toggle('hidden', t.classList.contains('done'));
+      else if (type === 'done') t.classList.toggle('hidden', !t.classList.contains('done'));
+      else if (type === 'fixtoday') t.classList.toggle('hidden', t.dataset.phase !== 'fixtoday');
+      else t.classList.toggle('hidden', t.dataset.phase !== type);
+    });
+  }
+
+  function resetAll() {
+    if (!confirm('Reset all tasks to uncomplete?')) return;
+    document.querySelectorAll('.task').forEach(t => {
+      t.classList.remove('done', 'open');
+      t.querySelector('.ck-icon').style.display = '';
+    });
+    updateProgress();
+  }
+
+  updateProgress();
+</script>
+</body>
+</html>
